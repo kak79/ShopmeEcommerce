@@ -2522,3 +2522,6 @@ Binding(ALT+COMMAND+R,
 
 !ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-08-09 12:32:13.466
 !MESSAGE executing callback sts4.classpath.LNSNJTYQ SUCCESS [done]
+
+!ENTRY org.eclipse.ui 2 2 2022-08-09 13:13:44.327
+!MESSAGE Invalid property category path: org.springframework.ide.eclipse.beans.ui.properties.ProjectPropertyPage (bundle: org.springframework.ide.eclipse.xml.namespaces, propertyPage: org.springframework.ide.eclipse.beans.ui.namespaces.projectPropertyPage)

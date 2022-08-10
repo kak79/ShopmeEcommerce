@@ -1,8 +1,10 @@
 package com.shopme.common.entity;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+
 
 @Entity
 @Table(name="users")
@@ -39,7 +43,7 @@ public class User {
 	
 	private boolean enabled;
 	
-	@ManyToMany
+	@ManyToMany(cascade = {CascadeType.ALL})
 	@JoinTable(
 			name="users_roles",
 			joinColumns = @JoinColumn(name="user_id"),
@@ -128,6 +132,38 @@ public class User {
 	
 	public void addRole(Role role) {
 		this.roles.add(role);
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", email=" + email + ", password=" + password + ", firstName=" + firstName
+				+ ", lastName=" + lastName + ", photos=" + photos + ", enabled=" + enabled + ", roles=" + roles + "]";
+	}
+
+
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(email, enabled, firstName, id, lastName, password, photos, roles);
+	}
+
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		User other = (User) obj;
+		return Objects.equals(email, other.email) && enabled == other.enabled
+				&& Objects.equals(firstName, other.firstName) && id == other.id
+				&& Objects.equals(lastName, other.lastName) && Objects.equals(password, other.password)
+				&& Objects.equals(photos, other.photos) && Objects.equals(roles, other.roles);
 	}
 	
 
