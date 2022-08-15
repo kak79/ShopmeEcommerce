@@ -4,7 +4,6 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -43,7 +42,7 @@ public class User {
 	
 	private boolean enabled;
 	
-	@ManyToMany(cascade = {CascadeType.ALL})
+	@ManyToMany
 	@JoinTable(
 			name="users_roles",
 			joinColumns = @JoinColumn(name="user_id"),
@@ -146,7 +145,7 @@ public class User {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(email, enabled, firstName, id, lastName, password, photos, roles);
+		return Objects.hash(id);
 	}
 
 
@@ -160,11 +159,12 @@ public class User {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		return Objects.equals(email, other.email) && enabled == other.enabled
-				&& Objects.equals(firstName, other.firstName) && id == other.id
-				&& Objects.equals(lastName, other.lastName) && Objects.equals(password, other.password)
-				&& Objects.equals(photos, other.photos) && Objects.equals(roles, other.roles);
+		return id == other.id;
 	}
+
+
+
+	
 	
 
 	

@@ -74,7 +74,7 @@ public class Role {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(description, id, name);
+		return Objects.hash(id);
 	}
 
 	@Override
@@ -86,8 +86,9 @@ public class Role {
 		if (getClass() != obj.getClass())
 			return false;
 		Role other = (Role) obj;
-		return Objects.equals(description, other.description) && id == other.id && Objects.equals(name, other.name);
+		return id == other.id;
 	}
+
 	
 	
 
